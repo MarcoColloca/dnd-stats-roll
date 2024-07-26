@@ -1,0 +1,234 @@
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, ol, menu{
+    list-style: none;
+}
+
+
+/* Layout */
+
+body{
+    background-color: rgb(35, 35, 35);
+}
+
+footer{
+    padding-bottom: 75px;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-4{
+    width: calc(100%/12*4);
+}
+
+.col-6{
+    width: calc(100%/12*6);
+}
+
+
+
+/* Utility */
+
+.red{
+    color: red;
+}
+
+
+
+/*\ Header Section /*/
+
+.header-section{
+    width: 100%;
+    background-color: coral;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-section__title{
+    color: white;
+    text-align: center;
+}
+
+
+
+/*\ Main Section /*/
+
+/* Dice Select Section */
+.tab-selection-section__select-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab-selection-section__select-box label{
+    color: white;
+    font-size: 24px;
+    padding: 30px 0;
+}
+
+.select-wrapper select{
+    color: white;
+    background-color: black;
+    padding: 5px 20px;
+    font-size: 18px;
+}
+
+.select-wrapper button{
+    border: transparent;
+    background-color: transparent;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: crimson;
+    cursor: pointer;
+}
+
+/* Tabs Section*/
+.roll-tab-section{
+    padding: 100px 0 0 0;
+}
+
+.roll-tab-section__title{
+    text-align: center;
+    color: crimson;
+}
+
+.roll-tab-section__title input{
+    color: crimson;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background-color: transparent;
+    padding: 5px 10px;
+    border: 1px solid crimson;
+    width: 55px;
+    appearance: auto;
+    -moz-appearance: textfield;
+}
+
+
+.roll-tab-section__subtitle{
+    text-align: center;
+    color: wheat;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.roll-tab-section__tabs-wrapper{
+    margin: 75px 0;
+}
+
+.roll-tab-section__tabs-wrapper__tab--4d6,
+.roll-tab-section__tabs-wrapper__tab--5d6,
+.roll-tab-section__tabs-wrapper__tab--6d6{
+    color:  white;
+    border: 1px solid white;
+    width: fit-content;
+    padding: 15px;
+    font-size: 32px;
+    width: 350px;
+    
+}
+
+.roll-tab-section__tabs-wrapper__tab--4d6 li,
+.roll-tab-section__tabs-wrapper__tab--5d6 li,
+.roll-tab-section__tabs-wrapper__tab--6d6 li{
+    width: 100%;
+    border-bottom: 1px solid white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.roll-button{
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    margin-left: 37%;
+    font-size: 18px;
+    background-color: crimson;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+
+/*\ Footer \*/
+
+.footer-title{
+    text-align: center;
+    color: crimson;
+    margin-bottom: 20px;
+}
+
+.statsDice{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.statsDice li{
+    margin-bottom: 11px;
+}
+
+.dash{    
+    margin-left: 45px;
+}
+
+.dash p{
+    display: inline-block;
+}
+
+.dash span{
+    margin-right: 10px;
+}
+
+/* Toggle Stat section */
+
+.toggle-stats{
+    display: flex;
+    color: white;
+    gap: 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.crimson{
+    color: crimson;
+}
+
+.white{
+    color: white;
+}
+
+.toggle-stats__title{
+    margin-top: 50px;
+    text-align: center;
+    color: white;
+}
+
+.box{
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 18px;
+}
+
+.box:hover{
+    background-color: black;
+}

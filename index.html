@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll For Stats!</title>
+    <link rel="icon" type="image/svg+xml" href="./img/ChibiFlayer.png"></link>
+    <script src="https://kit.fontawesome.com/19fd1971ea.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+
+<body>    
+
+    <div id="app">
+        <header class="header-section">
+            <div class="container">
+                
+                <h1 class="header-section__title">Roll for Stats!</h1>
+
+            </div>
+        </header>
+
+        <main> 
+            <!-- Sezione della Selezione delle Tab -->
+            <div class="tab-selection-section">
+                <div class="container">
+                    <div class="tab-selection-section__select-box">
+                        <label for="dice-select">Scegli quanti dadi lanciare:</label>
+                        <div class="select-wrapper">
+                            <select name="dice" id="dice-select" v-model="selected">
+                                <option>3d6</option>                           
+                                <option>4d6</option>
+                                <option>5d6</option>
+                                <option>6d6</option>
+                                <option>flat</option>
+                            </select>                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Selezione delle Stat Extra -->
+            <div class="container">
+                <h3 class="toggle-stats__title">Seleziona quali statistiche Rollare!</h3>
+                <ul class="toggle-stats">
+                    <li v-for="(object, i) in firstTab" @click="toggleStat(i)" class="box">
+                        <p :class="object.visible ? 'crimson' : 'white'">
+                            {{object.stat}} 
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Schede con 3d6 -->
+            <div class="roll-tab-section" v-show="choseTab.first === true">
+                <h1 class="roll-tab-section__title">
+                    Schede per le Stats con 3d6
+                </h1>
+                <p class="roll-tab-section__subtitle">
+                    Per ogni Statistica verranno lanciati 3d6, Good Luck!
+                </p>
+                                
+
+                <div class="container">
+                    <div class="roll-tab-section__tabs-wrapper row">
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(firstTab, 3, 0, statsDice1)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--4d6">
+                                <li v-for="object in firstTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>                                                                
+                            </ul>                         
+                        </div>
+
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(secondTab, 3, 0, statsDice2)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--5d6">
+                                <li v-for="object in secondTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(thirdTab, 3, 0, statsDice3)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--6d6">
+                                <li v-for="object in thirdTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>                        
+                    </div>
+                </div>
+            </div>            
+
+
+            <!-- Schede con 4d6 -->
+            <div class="roll-tab-section" v-show="choseTab.second === true">
+                <h1 class="roll-tab-section__title">
+                    Schede per le Stats con 4d6
+                </h1>
+                <p class="roll-tab-section__subtitle">
+                    Per ogni Statistica verranno lanciati 4d6 e tenuti i 3 migliori.
+                </p>
+                                
+
+                <div class="container">
+                    <div class="roll-tab-section__tabs-wrapper row">
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(firstTab, 4, 1, statsDice1)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--4d6">
+                                <li v-for="object in firstTab" :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>                                                                
+                            </ul>                         
+                        </div>
+
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(secondTab, 4, 1, statsDice2)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--5d6">
+                                <li v-for="object in secondTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(thirdTab, 4, 1, statsDice3)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--6d6">
+                               <li v-for="object in thirdTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schede con 5d6 -->
+            <div class="roll-tab-section" v-show="choseTab.third === true">
+                <h1 class="roll-tab-section__title">
+                    Schede per le Stats con 5d6
+                </h1>
+                <p class="roll-tab-section__subtitle">
+                    Per ogni Statistica verranno lanciati 5d6 e tenuti i 3 migliori.
+                </p>
+                                
+
+                <div class="container">
+                    <div class="roll-tab-section__tabs-wrapper row">
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(firstTab, 5, 2, statsDice1)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--4d6">
+                                <li v-for="object in firstTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>                                                                
+                            </ul>                         
+                        </div>
+
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(secondTab, 5, 2, statsDice2)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--5d6">
+                                <li v-for="object in secondTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(thirdTab, 5, 2, statsDice3)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--6d6">
+                               <li v-for="object in thirdTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schede con 6d6 -->
+            <div class="roll-tab-section" v-show="choseTab.fourth === true">
+                <h1 class="roll-tab-section__title">
+                    Schede per le Stats con 6d6
+                </h1>
+                <p class="roll-tab-section__subtitle">
+                    Per ogni Statistica verranno lanciati 6d6 e tenuti i 3 migliori.
+                </p>
+                                
+
+                <div class="container">
+                    <div class="roll-tab-section__tabs-wrapper row">
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(firstTab, 6, 3, statsDice1)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--4d6">
+                                <li v-for="object in firstTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>                                                                
+                            </ul>                         
+                        </div>
+
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(secondTab, 6, 3, statsDice2)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--5d6">
+                                <li v-for="object in secondTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStat(thirdTab, 6, 3, statsDice3)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--6d6">
+                               <li v-for="object in thirdTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schede con stat Flat -->
+            <div class="roll-tab-section" v-show="choseTab.fifth === true">
+                <h1 class="roll-tab-section__title">
+                    Schede per le Stats Flat <input type="number" v-model="statFlatMin" min="0" max="99"> - <input type="number" v-model="statFlatMax" min="5" max="99">
+                </h1>
+                <p class="roll-tab-section__subtitle">
+                    Il risultato di ogni statistica sarà un numero compreso tra il primo ed il secondo numero scelti.
+                </p>          
+
+                <div class="container">
+                    <div class="roll-tab-section__tabs-wrapper row">
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStatFlat(firstTab)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--4d6">
+                                <li v-for="object in firstTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>                                                                
+                            </ul>                         
+                        </div>
+
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStatFlat(secondTab)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--5d6">
+                                <li v-for="object in secondTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-4">
+                            <button class="roll-button" @click="generateStatFlat(thirdTab)">Roll!</button>
+                            <ul class="roll-tab-section__tabs-wrapper__tab--6d6">
+                               <li v-for="object in thirdTab"  :key="object.id">
+                                    <div v-if="object.visible">
+                                        <span>{{object.stat}}:</span> <span>{{object.value}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+
+        <!-- Footer -->
+        <footer v-show="choseTab.fifth === false">
+            <h1 class="footer-title"> Dadi dei Roll!</h1>
+            <div class="container">
+                <div class="row">                    
+                    <div class="col-4">
+                        <ul class="statsDice">
+                            <li v-for="object in statsDice1" class="dash">
+                                <div v-if="object.visible">
+                                    <span>{{object.name}}: </span>
+                                    <p v-for="dice in object.dice"> | {{dice}} <span> | </span></p>
+                                </div>
+                            </li>
+                        </ul>                        
+                    </div>
+
+                    <div class="col-4">
+                        <ul class="statsDice">
+                            <li v-for="object in statsDice2" class="dash">
+                                <div v-if="object.visible">
+                                    <span>{{object.name}}: </span>
+                                    <p v-for="dice in object.dice"> | {{dice}} <span> | </span></p>
+                                </div>
+                            </li>
+                        </ul>                        
+                    </div>
+
+                    <div class="col-4">
+                        <ul class="statsDice">
+                            <li v-for="object in statsDice3" class="dash">
+                                <div v-if="object.visible">
+                                    <span>{{object.name}}: </span>
+                                    <p v-for="dice in object.dice"> | {{dice}} <span> | </span></p>
+                                </div>
+                            </li>
+                        </ul>                        
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+    
+    </div>
+    
+    
+
+    <script type="text/javascript" src="./js/app.js"></script>
+</body>
+</html>
