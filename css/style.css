@@ -13,7 +13,11 @@ ul, ol, menu{
 /* Layout */
 
 body{
-    background-color: rgb(35, 35, 35);
+    background-color: rgb(54, 54, 54);
+}
+
+header{
+    margin-bottom: 30px;
 }
 
 footer{
@@ -38,7 +42,30 @@ footer{
     width: calc(100%/12*6);
 }
 
+.main-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 18px;
+}
 
+.footer-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 18px;
+    margin-top: 30px;
+    min-height: 400px;
+}
+
+.body-bg-img{
+    position: fixed;
+    z-index: -999;
+    width: 100vw;
+    height: 100vh;
+}
 
 /* Utility */
 
@@ -46,24 +73,97 @@ footer{
     color: red;
 }
 
+.justify-between{
+    justify-content: space-between;
+}
 
+.justify-around{
+    justify-content: space-around;
+}
 
 /*\ Header Section /*/
 
 .header-section{
     width: 100%;
-    background-color: coral;
+    background-color: crimson;
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: -99;
 }
 
 .header-section__title{
     color: white;
     text-align: center;
+    font-family: "Playwrite DK Loopet", cursive;
+    font-optical-sizing: auto;
 }
 
+.dragon-h-icon-left{
+    max-width: 300px;
+    position: absolute;
+    z-index: -5;
+    bottom: 0;
+    left: 0;
+    animation: flyLeft 5s linear infinite;
+}
+
+.dragon-h-icon-right{
+    max-width: 300px;
+    position: absolute;
+    z-index: -5;
+    bottom: 0;
+    right: 0;
+    transform: scaleX(-1);
+    animation: flyRight 5s linear infinite;
+}
+
+@keyframes flyLeft{
+    0% {
+        transform:  translateX(0) rotate(0deg);
+    }
+
+    49.99% {
+        transform:  translateX(calc(50vw - 150px)) rotate(0deg);
+    }
+
+    50% {
+        transform:  translateX(calc(50vw - 150px)) rotateY(180deg);
+    }
+
+    99.99% {
+        transform:  translateX(0) rotateY(180deg);
+    }
+
+    100% {
+        transform:  translateX(0) rotateY(0deg);
+    }
+}
+
+
+@keyframes flyRight{
+    0% {
+        transform:  translateX(0) rotateY(180deg);
+    }
+
+    49.99% {
+        transform:  translateX(calc(-50vw + 150px)) rotateY(180deg);
+    }
+
+    50% {
+        transform:  translateX(calc(-50vw + 150px)) rotateY(0deg);
+    }
+
+    99.99% {
+        transform:  translateX(0) rotateY(0deg);
+    }
+
+    100% {
+        transform:  translateX(0) rotateY(180deg);
+    }
+}
 
 
 /*\ Main Section /*/
@@ -101,7 +201,7 @@ footer{
 
 /* Tabs Section*/
 .roll-tab-section{
-    padding: 100px 0 0 0;
+    padding: 35px 0 0 0;
 }
 
 .roll-tab-section__title{
@@ -134,6 +234,14 @@ footer{
     margin: 75px 0;
 }
 
+
+.roll-tab-section__tabs-wrapper .col-4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .roll-tab-section__tabs-wrapper__tab--4d6,
 .roll-tab-section__tabs-wrapper__tab--5d6,
 .roll-tab-section__tabs-wrapper__tab--6d6{
@@ -142,27 +250,35 @@ footer{
     width: fit-content;
     padding: 15px;
     font-size: 32px;
-    width: 350px;
-    
+    width: 350px;    
 }
 
 .roll-tab-section__tabs-wrapper__tab--4d6 li,
 .roll-tab-section__tabs-wrapper__tab--5d6 li,
 .roll-tab-section__tabs-wrapper__tab--6d6 li{
     width: 100%;
-    border-bottom: 1px solid white;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
+.roll-tab-section__tabs-wrapper__tab--4d6 li div,
+.roll-tab-section__tabs-wrapper__tab--5d6 li div,
+.roll-tab-section__tabs-wrapper__tab--6d6 li div{
+    border-bottom: 1px solid white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 40px;    
+}
+
 .roll-button{
     padding: 5px 10px;
     margin-bottom: 15px;
-    margin-left: 37%;
     font-size: 18px;
     background-color: crimson;
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
+    color: white;
     cursor: pointer;
 }
 
@@ -179,10 +295,15 @@ footer{
     color: white;
     font-size: 20px;
     font-weight: bold;
+    text-align: left;
 }
 
 .statsDice li{
     margin-bottom: 11px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dash{    
@@ -194,6 +315,11 @@ footer{
 }
 
 .dash span{
+    margin-right: 10px;
+}
+
+.dice-img{
+    max-width: 25px;
     margin-right: 10px;
 }
 

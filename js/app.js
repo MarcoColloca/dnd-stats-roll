@@ -348,14 +348,16 @@ createApp({
 
     methods:{
 
-        getRandomInt(min, max) {
+        getRandomInt(min, max) 
+        {
             const minCeiled = Math.ceil(min);
             const maxFloored = Math.floor(max);
             return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); 
         },
 
 
-        toggleStat(index){
+        toggleStat(index)
+        {
            
             for(let i = 0; i < this.firstTab.length; i++)
             {
@@ -381,7 +383,8 @@ createApp({
         },
 
 
-        generateStat(tab, diceRolled, diceRemoved, diceArray){
+        generateStat(tab, diceRolled, diceRemoved, diceArray)
+        {
             
             for(let i = 0; i < tab.length; i++){                
                 const numbers = []
@@ -412,7 +415,8 @@ createApp({
             }
         },
 
-        generateStatFlat(tab){
+        generateStatFlat(tab)
+        {
             for(let i = 0; i < tab.length; i++){
 
                 const number = this.getRandomInt(this.statFlatMin, this.statFlatMax + 1)
@@ -421,7 +425,8 @@ createApp({
             }
         },
 
-        tabSelection(){
+        tabSelection()
+        {
 
             for(let i = 0; i < this.firstTab.length; i++){
                 this.firstTab[i].value = '-'
@@ -480,6 +485,11 @@ createApp({
                 this.choseTab.fifth = true;
             }
             
+        },
+
+        getDiceImg(number)
+        {
+            return `img/d6-${number}.png`           
         }
     }
 
