@@ -378,7 +378,8 @@ footer{
     }
 
     .toggle-stats{
-        overflow-x: scroll;
+        width: 400px;
+        flex-wrap: wrap;
     }
 
 
