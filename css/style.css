@@ -358,3 +358,35 @@ footer{
 .box:hover{
     background-color: black;
 }
+
+
+
+/* Media Query Mobile */
+
+
+@media(max-width: 450px)
+{
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .col-4{
+        
+        width: calc(100%/12*12);
+        margin-top: 15px;
+    }
+
+    .toggle-stats{
+        overflow-x: scroll;
+    }
+
+
+    .dragon-h-icon-left{
+        display: none;
+    }
+    
+    .dragon-h-icon-right{
+        display: none;
+    }
+}
