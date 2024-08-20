@@ -47,7 +47,7 @@ createApp({
                     dice: [],
                 },
                 {
-                    name: 'Onore',
+                    name: 'Fama',
                     visible: false,
                     dice: [],
                 },
@@ -95,7 +95,7 @@ createApp({
                     dice: [],
                 },
                 {
-                    name: 'Onore',
+                    name: 'Fama',
                     visible: false,
                     dice: [],
                 },
@@ -143,7 +143,7 @@ createApp({
                     dice: [],
                 },
                 {
-                    name: 'Onore',
+                    name: 'Fama',
                     visible: false,
                     dice: [],
                 },
@@ -207,7 +207,7 @@ createApp({
                     id: 1.7
                 },
                 {
-                    stat: 'Onore',
+                    stat: 'Fama',
                     value: '-',
                     visible: false,
                     id: 1.8
@@ -264,7 +264,7 @@ createApp({
                     id: 2.7
                 },
                 {
-                    stat: 'Onore',
+                    stat: 'Fama',
                     value: '-',
                     visible: false,
                     id: 2.8
@@ -321,7 +321,7 @@ createApp({
                     id: 3.7
                 },
                 {
-                    stat: 'Onore',
+                    stat: 'Fama',
                     value: '-',
                     visible: false,
                     id: 3.8
